@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+dashboard.png
+_rendered_dashboard.html
