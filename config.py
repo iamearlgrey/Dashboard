@@ -37,8 +37,8 @@ CALENDAR_FEEDS = json.loads(os.environ.get("CALENDAR_FEEDS_JSON", "[]"))
 
 # Open-Meteo needs no API key, just a lat/lon. Defaults to Portland, OR.
 # Not sensitive, fine to leave hardcoded here.
-WEATHER_LATITUDE = float(os.environ.get("WEATHER_LATITUDE", "45.56986494482984"))
-WEATHER_LONGITUDE = float(os.environ.get("WEATHER_LONGITUDE", "-122.69789500908814"))
+WEATHER_LATITUDE = float(os.environ.get("WEATHER_LATITUDE", "45.5152"))
+WEATHER_LONGITUDE = float(os.environ.get("WEATHER_LONGITUDE", "-122.6784"))
 TEMPERATURE_UNIT = "fahrenheit"  # or "celsius"
 
 # Used to figure out "today" correctly regardless of what server/timezone
