@@ -10,10 +10,10 @@ doesn't know or care about any visual details, those all live here.
 <head>
 <meta charset="utf-8">
 <style>
-  @font-face { font-family: 'Poppins'; font-weight: 700; src: url('fonts/Poppins-Bold.ttf'); }
-  @font-face { font-family: 'Poppins'; font-weight: 500; src: url('fonts/Poppins-Medium.ttf'); }
-  @font-face { font-family: 'Liberation Sans'; font-weight: 400; src: url('fonts/LiberationSans-Regular.ttf'); }
-  @font-face { font-family: 'Liberation Sans'; font-weight: 700; src: url('fonts/LiberationSans-Bold.ttf'); }
+  @font-face { font-family: 'Poppins'; font-weight: 700; src: url('fonts/SFMono-Heavy.ttf'); }
+  @font-face { font-family: 'Poppins'; font-weight: 500; src: url('fonts/SFMono-Regular.ttf'); }
+  @font-face { font-family: 'Liberation Sans'; font-weight: 400; src: url('fonts/HelveticaNeueRoman.ttf'); }
+  @font-face { font-family: 'Liberation Sans'; font-weight: 700; src: url('fonts/HelveticaNeueBold.ttf'); }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,7 +32,7 @@ doesn't know or care about any visual details, those all live here.
 
   /* ---------------- TODAY PANEL (left) ---------------- */
   .today {
-    width: 286px;
+    width: 300px;
     flex-shrink: 0;
     padding: 14px 16px;
     border-right: 2px solid #000;
@@ -40,34 +40,36 @@ doesn't know or care about any visual details, those all live here.
   .today .dayname {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 30px;
-    letter-spacing: 1px;
+    font-size: 48px;
+    border-bottom: 6px solid #000;
   }
   .today .datestr {
-    font-size: 20px;
-    letter-spacing: 2px;
+        font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 34px;
     margin-top: 4px;
     padding-bottom: 6px;
     border-bottom: 2px solid #000;
   }
   .today .weather {
-    font-size: 26px;
     margin-top: 12px;
     display: flex;
     align-items: center;
+        border-bottom: 2px solid #000;
     gap: 6px;
   }
   .today .weather svg { flex-shrink: 0; }
-  .today .weather .hi { font-weight: 700; }
+  .today .weather .hi { font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 700; }
+  .today .weather .lo { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 500; }
+
   .today .meal {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 19px;
+    font-family: 'Liberation', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
     text-transform: uppercase;
     margin-top: 10px;
     padding-bottom: 8px;
     border-bottom: 1px solid #000;
-    line-height: 1.25;
   }
   .today .people { margin-top: 8px; }
   .person-block { margin-bottom: 10px; }
@@ -86,18 +88,19 @@ doesn't know or care about any visual details, those all live here.
   .person-event .title { flex: 1; }
 
   /* ---------------- WEEK LIST (right) ---------------- */
-  .week { flex: 1; display: flex; flex-direction: column; }
+  .week { flex: 1; display: flex; flex-direction: column; padding: 14px 16px;
+}
   .day-row {
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid #000;
   }
   .day-row:last-child { border-bottom: none; }
 
   .day-row .col-date {
-    width: 90px;
+    width: 85px;
     flex-shrink: 0;
     border-right: 1px solid #000;
     padding-right: 10px;
@@ -106,19 +109,19 @@ doesn't know or care about any visual details, those all live here.
   .day-row .col-date .dayname {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 19px;
+    font-size: 24px;
     display: flex;
     align-items: baseline;
     gap: 5px;
     white-space: nowrap;
   }
   .day-row .col-date .dayname .daynum {
-    font-family: 'Liberation Sans', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
   }
   .day-row .col-date .weather {
-    font-size: 12px;
+    font-size: 14px;
     color: #000;
     margin-top: 2px;
     display: flex;
@@ -128,13 +131,12 @@ doesn't know or care about any visual details, those all live here.
   .day-row .col-date .weather svg { flex-shrink: 0; }
 
   .day-row .col-meal {
-    width: 190px;
+    width: 150px;
     flex-shrink: 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    font-family: 'Liberation Sans', sans-serif;
+    font-weight: 700;
     font-size: 14px;
     text-transform: uppercase;
-    line-height: 1.2;
     border-right: 1px solid #000;
     padding-right: 10px;
     margin-right: 10px;
@@ -142,8 +144,7 @@ doesn't know or care about any visual details, those all live here.
 
   .day-row .col-events {
     flex: 1;
-    font-size: 11px;
-    line-height: 1.4;
+    font-size: 12px;
     max-height: 100%;
     overflow: hidden;
   }
@@ -164,7 +165,7 @@ doesn't know or care about any visual details, those all live here.
     <div class="today">
       <div class="dayname">{{ today.dayname_full }}</div>
       <div class="datestr">{{ today.datestr }}</div>
-      <div class="weather">{{ today.icon_svg | safe }} <span>{{ today.lo }}°</span> <span class="hi">{{ today.hi }}°</span></div>
+      <div class="weather">{{ today.icon_svg | safe }} <span class="lo">{{ today.lo }}°</span> <span class="hi">/{{ today.hi }}°</span></div>
       <div class="meal">{{ today.meal or "—" }}</div>
       <div class="people">
         {% for person_name, events in today.grouped_events %}
