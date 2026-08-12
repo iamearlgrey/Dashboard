@@ -15,6 +15,7 @@ from PIL import Image
 from config import DISPLAY_WIDTH, DISPLAY_HEIGHT, DITHER_TO_1BIT
 from models import Day
 from weather_icons import get_icon_svg
+from localtime import today_local
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,26 +51,27 @@ def _build_today_context(day: Day) -> dict:
 
 
 def _build_week_day_context(day: Day) -> dict:
-    def sort_key(ev):
-        return (ev.start_time is None, ev.start_time or dtime(0, 0))
+    person_lines = []
+    for person_name, events in day.events_grouped_by_person():
+        parts = []
+        for e in events:
+            t = _fmt_time(e.start_time)
+            parts.append(f"{t} {e.title}" if t else e.title)
+        person_lines.append({"who": person_name.upper(), "text": ", ".join(parts)})
 
-    lines = [
-        {"who": ev.source.upper(), "time_str": _fmt_time(ev.start_time), "title": ev.title}
-        for ev in sorted(day.events, key=sort_key)
-    ]
     return {
         "dayname": day.the_date.strftime("%a").upper(),
         "daynum": day.the_date.strftime("%-d"),
         "hi": _fmt_temp(day.weather.high),
         "lo": _fmt_temp(day.weather.low),
         "meal": day.meal,
-        "event_lines": lines,
+        "person_lines": person_lines,
         "icon_svg": get_icon_svg(day.weather.condition, size=18),
     }
 
 
 def render_dashboard(days: list[Day], out_path: str, today: date | None = None) -> str:
-    today = today or date.today()
+    today = today or today_local()
     today_day = next((d for d in days if d.the_date == today), days[0])
     week_days = [d for d in days if d.the_date != today_day.the_date]
 

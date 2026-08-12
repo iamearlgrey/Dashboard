@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from datetime import date, time, timedelta
 from models import Day, Event, DayWeather
+from localtime import today_local
 
 MEALS = [
     "Tacos", "Leftovers", "Spaghetti & Meatballs", "Sheet-Pan Chicken",
@@ -20,7 +21,10 @@ CONDITIONS = ["Clear", "Partly Cloudy", "Cloudy", "Rain", "Storms", "Snow", "Fog
 SAMPLE_EVENTS = [
     [("Dentist - Kai", "Mom", "#000000", time(9, 0), time(9, 45))],
     [("Soccer practice", "Dad", "#000000", time(17, 30), time(18, 30))],
-    [],
+    [("Dr appt", "Mom", "#000000", time(9, 0), time(9, 45)),
+     ("Haircut", "Mom", "#000000", time(13, 0), time(13, 30)),
+     ("Book club", "Mom", "#000000", time(19, 0), time(20, 30)),
+     ("Soccer practice", "Dad", "#000000", time(17, 30), time(18, 30))],
     [("Parent-teacher conf.", "Mom", "#000000", time(16, 0), time(16, 30)),
      ("Trash day", "Family", "#000000", None, None)],
     [("Piano lesson", "Kai", "#000000", time(15, 0), time(15, 30))],
@@ -30,7 +34,7 @@ SAMPLE_EVENTS = [
 
 
 def get_demo_days(start: date | None = None) -> list[Day]:
-    start = start or date.today()
+    start = start or today_local()
     days = []
     for i in range(7):
         d = start + timedelta(days=i)

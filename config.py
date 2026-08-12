@@ -25,7 +25,7 @@ DISPLAY_HEIGHT = 480
 
 # e-ink panels are 1-bit (pure black/white, no gray) unless you have a
 # grayscale panel. Keep this True for standard B&W e-paper.
-DITHER_TO_1BIT = False
+DITHER_TO_1BIT = True
 
 # ---------------------------------------------------------------------------
 # DATA SOURCES
@@ -40,3 +40,8 @@ CALENDAR_FEEDS = json.loads(os.environ.get("CALENDAR_FEEDS_JSON", "[]"))
 WEATHER_LATITUDE = float(os.environ.get("WEATHER_LATITUDE", "45.56986494482984"))
 WEATHER_LONGITUDE = float(os.environ.get("WEATHER_LONGITUDE", "-122.69789500908814"))
 TEMPERATURE_UNIT = "fahrenheit"  # or "celsius"
+
+# Used to figure out "today" correctly regardless of what server/timezone
+# actually runs this script (see localtime.py for why this matters).
+# Full list of valid names: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+TIMEZONE = os.environ.get("TIMEZONE", "America/Los_Angeles")

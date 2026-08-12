@@ -11,10 +11,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
-from datetime import date
 
 from config import CALENDAR_FEEDS
 from render import render_dashboard
+from localtime import today_local
 
 
 def build(use_demo: bool, out_path: str):
@@ -33,7 +33,7 @@ def build(use_demo: bool, out_path: str):
             if d.the_date in weather:
                 d.weather = weather[d.the_date]
 
-    path = render_dashboard(days, out_path, today=date.today())
+    path = render_dashboard(days, out_path, today=today_local())
     print(f"[ok] wrote {path}")
 
 
