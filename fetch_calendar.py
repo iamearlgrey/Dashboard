@@ -18,6 +18,7 @@ from icalendar import Calendar
 
 from models import Day, Event, DayWeather
 from config import CALENDAR_FEEDS
+from localtime import today_local
 
 
 def _fetch_ics_text(url: str) -> str:
@@ -32,7 +33,7 @@ def get_calendar_days(start: date | None = None) -> list[Day]:
     meals pulled from CALENDAR_FEEDS. Weather is left empty here —
     fetch_weather.py fills that in separately.
     """
-    start = start or date.today()
+    start = start or today_local()
     end = start + timedelta(days=7)
 
     days = {start + timedelta(days=i): Day(the_date=start + timedelta(days=i))
