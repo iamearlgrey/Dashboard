@@ -1,0 +1,36 @@
+# Save this as .github/workflows/render.yml in your repo.
+# It regenerates dashboard.png every 30 min and commits it, so the
+# ESP32 can always grab the latest version from a stable raw.githubusercontent.com URL.
+# No home server, no Pi, no subscription — GitHub Actions free tier covers this easily.
+
+name: Render dashboard
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes
+  workflow_dispatch: {}       # lets you trigger it manually from the Actions tab
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+      - run: playwright install --with-deps chromium
+
+      - run: python3 main.py --out dashboard.png
+        env:
+          CALENDAR_FEEDS_JSON: ${{ secrets.CALENDAR_FEEDS_JSON }}
+
+      - name: Commit updated image
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add dashboard.png
+          git diff --quiet --cached || git commit -m "Update dashboard"
+          git push
