@@ -66,7 +66,7 @@ def _build_week_day_context(day: Day) -> dict:
         "lo": _fmt_temp(day.weather.low),
         "meal": day.meal,
         "person_lines": person_lines,
-        "icon_svg": get_icon_svg(day.weather.condition, size=36),
+        "icon_svg": get_icon_svg(day.weather.condition, size=24),
     }
 
 
