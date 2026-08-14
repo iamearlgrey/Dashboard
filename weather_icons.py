@@ -65,7 +65,7 @@ _ICONS = {
 }
 
 
-def get_icon_svg(condition: str, size: int = 56) -> str:
+def get_icon_svg(condition: str, size: int = 40) -> str:
     key = (condition or "").strip().lower()
     template = _ICONS.get(key, _SUN)
     return template.format(size=size)
