@@ -10,10 +10,10 @@ doesn't know or care about any visual details, those all live here.
 <head>
 <meta charset="utf-8">
 <style>
-  @font-face { font-family: 'Poppins'; font-weight: 700; src: url('fonts/SFMono-Heavy.ttf'); }
-  @font-face { font-family: 'Poppins'; font-weight: 500; src: url('fonts/SFMono-Regular.ttf'); }
-  @font-face { font-family: 'Liberation Sans'; font-weight: 400; src: url('fonts/HelveticaNeueRoman.ttf'); }
-  @font-face { font-family: 'Liberation Sans'; font-weight: 700; src: url('fonts/HelveticaNeueBold.ttf'); }
+  @font-face { font-family: 'Data'; font-weight: 700; src: url('fonts/SFMono-Heavy.ttf'); }
+  @font-face { font-family: 'Data'; font-weight: 500; src: url('fonts/SFMono-Regular.ttf'); }
+  @font-face { font-family: 'Text'; font-weight: 400; src: url('fonts/HelveticaNeueRoman.otf'); }
+  @font-face { font-family: 'Text'; font-weight: 700; src: url('fonts/HelveticaNeueBold.otf'); }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,7 +24,7 @@ doesn't know or care about any visual details, those all live here.
     height: {{ height }}px;
     background: #ffffff;
     color: #000000;
-    font-family: 'Liberation Sans', sans-serif;
+    font-family: 'Text', sans-serif;
     overflow: hidden;
   }
 
@@ -38,13 +38,13 @@ doesn't know or care about any visual details, those all live here.
     border-right: 2px solid #000;
   }
   .today .dayname {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Data', sans-serif;
     font-weight: 700;
     font-size: 48px;
     border-bottom: 6px solid #000;
   }
   .today .datestr {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Data', sans-serif;
     font-weight: 500;
     font-size: 34px;
     margin-top: 4px;
@@ -59,11 +59,11 @@ doesn't know or care about any visual details, those all live here.
     gap: 6px;
   }
   .today .weather svg { flex-shrink: 0; }
-  .today .weather .hi { font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 700; }
-  .today .weather .lo { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 500; }
+  .today .weather .hi { font-family: 'Data', sans-serif; font-size: 48px; font-weight: 700; }
+  .today .weather .lo { font-family: 'Data', sans-serif; font-size: 40px; font-weight: 500; }
 
   .today .meal {
-    font-family: 'Liberation', sans-serif;
+    font-family: 'Text', sans-serif;
     font-weight: 700;
     font-size: 24px;
     text-transform: uppercase;
@@ -107,7 +107,7 @@ doesn't know or care about any visual details, those all live here.
     margin-right: 10px;
   }
   .day-row .col-date .dayname {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Data', sans-serif;
     font-weight: 700;
     font-size: 24px;
     display: flex;
@@ -116,7 +116,7 @@ doesn't know or care about any visual details, those all live here.
     white-space: nowrap;
   }
   .day-row .col-date .dayname .daynum {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Data', sans-serif;
     font-weight: 500;
     font-size: 18px;
   }
@@ -133,7 +133,7 @@ doesn't know or care about any visual details, those all live here.
   .day-row .col-meal {
     width: 150px;
     flex-shrink: 0;
-    font-family: 'Liberation Sans', sans-serif;
+    font-family: 'Text', sans-serif;
     font-weight: 700;
     font-size: 14px;
     text-transform: uppercase;
@@ -144,7 +144,7 @@ doesn't know or care about any visual details, those all live here.
 
   .day-row .col-events {
     flex: 1;
-    font-family: 'Liberation Sans', sans-serif;
+    font-family: 'Text', sans-serif;
     font-size: 12px;
     max-height: 100%;
     overflow: hidden;
