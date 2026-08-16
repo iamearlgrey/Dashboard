@@ -12,9 +12,27 @@ from __future__ import annotations
 
 import argparse
 
+from PIL import Image
+
 from config import CALENDAR_FEEDS
 from render import render_dashboard
 from localtime import today_local
+
+
+def save_kindle_rotated(source_path: str, out_path: str, clockwise: bool = True):
+    """
+    Kindle screensavers have no orientation sensing — they just show a
+    static image as-is. To view this landscape dashboard on a Kindle,
+    you physically turn the device 90° sideways, so the image itself
+    needs to be pre-rotated the OPPOSITE way to end up right-side-up
+    once the device is turned. If it comes out upside-down or sideways
+    on your actual Kindle, just flip `clockwise` to fix it — that's the
+    only thing that ever needs to change here.
+    """
+    img = Image.open(source_path)
+    angle = -90 if clockwise else 90
+    rotated = img.rotate(angle, expand=True)
+    rotated.save(out_path)
 
 
 def build(use_demo: bool, out_path: str):
@@ -35,6 +53,10 @@ def build(use_demo: bool, out_path: str):
 
     path = render_dashboard(days, out_path, today=today_local())
     print(f"[ok] wrote {path}")
+
+    kindle_path = out_path.rsplit(".", 1)[0] + "_kindle.png"
+    save_kindle_rotated(path, kindle_path)
+    print(f"[ok] wrote {kindle_path} (rotated for Kindle screensaver)")
 
 
 if __name__ == "__main__":

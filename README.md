@@ -121,6 +121,19 @@ on wake, draws it, and goes back to sleep. Zero cost, zero maintenance.
 Because the secrets live outside the repo, the repo can safely be
 public or private — your choice.
 
+## The Kindle screensaver version
+
+Every run also produces `dashboard_kindle.png` — the same dashboard,
+pre-rotated 90° to match a Kindle's portrait screen dimensions
+(480×800 instead of 800×480). Kindle screensavers don't sense
+orientation, so you physically turn the device sideways to view a
+landscape dashboard — set your screensaver-refresh hack to poll
+`.../main/dashboard_kindle.png` instead of the regular file, and prop
+the Kindle sideways to match. If it comes out upside-down on the
+first try, flip `clockwise=True` to `False` (or back) in `main.py`'s
+call to `save_kindle_rotated` — that's the only thing that ever needs
+adjusting.
+
 ## Next: the ESP32 side
 
 Once you're happy with the layout, the firmware side is short:
