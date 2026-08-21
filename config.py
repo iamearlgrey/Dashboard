@@ -19,9 +19,12 @@ load_dotenv()  # reads .env if present; harmless no-op if it isn't (e.g. on GitH
 # ---------------------------------------------------------------------------
 # DISPLAY
 # ---------------------------------------------------------------------------
-# Waveshare 7.5" B&W e-paper is 800x480. Change this to match your panel.
-DISPLAY_WIDTH = 800
-DISPLAY_HEIGHT = 480
+# Waveshare 7.5" B&W e-paper is 800x480; a Kindle Paperwhite 7th-gen
+# (2015) is 1448x1072 in landscape (1072x1448 native portrait).
+# Whichever physical display you're actually using, set it here —
+# everything else scales off these two numbers.
+DISPLAY_WIDTH = 1448
+DISPLAY_HEIGHT = 1072
 
 # e-ink panels are 1-bit (pure black/white, no gray) unless you have a
 # grayscale panel. Keep this True for standard B&W e-paper.
@@ -37,8 +40,8 @@ CALENDAR_FEEDS = json.loads(os.environ.get("CALENDAR_FEEDS_JSON", "[]"))
 
 # Open-Meteo needs no API key, just a lat/lon. Defaults to Portland, OR.
 # Not sensitive, fine to leave hardcoded here.
-WEATHER_LATITUDE = float(os.environ.get("WEATHER_LATITUDE", "45.569188986173565"))
-WEATHER_LONGITUDE = float(os.environ.get("WEATHER_LONGITUDE", "-122.69780920935095"))
+WEATHER_LATITUDE = float(os.environ.get("WEATHER_LATITUDE", "45.5152"))
+WEATHER_LONGITUDE = float(os.environ.get("WEATHER_LONGITUDE", "-122.6784"))
 TEMPERATURE_UNIT = "fahrenheit"  # or "celsius"
 
 # Used to figure out "today" correctly regardless of what server/timezone

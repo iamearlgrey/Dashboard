@@ -46,7 +46,7 @@ def _build_today_context(day: Day) -> dict:
         "lo": _fmt_temp(day.weather.low),
         "meal": day.meal,
         "grouped_events": grouped,
-        "icon_svg": get_icon_svg(day.weather.condition, size=50),
+        "icon_svg": get_icon_svg(day.weather.condition, size=54),
     }
 
 
@@ -66,7 +66,7 @@ def _build_week_day_context(day: Day) -> dict:
         "lo": _fmt_temp(day.weather.low),
         "meal": day.meal,
         "person_lines": person_lines,
-        "icon_svg": get_icon_svg(day.weather.condition, size=24),
+        "icon_svg": get_icon_svg(day.weather.condition, size=33),
     }
 
 
@@ -88,8 +88,16 @@ def render_dashboard(days: list[Day], out_path: str, today: date | None = None) 
     with open(html_path, "w") as f:
         f.write(html)
 
-    raw_png_path = out_path if not DITHER_TO_1BIT else out_path + ".raw.png"
+    raw_png_path = out_path + ".raw.png"
     _screenshot(html_path, raw_png_path)
+
+    # Kept as real 8-bit grayscale (not 1-bit) specifically because some
+    # e-ink display tools — Kindle's own "eips", for one — refuse to paint
+    # a 1-bit image at all ("8bit only" error) even though the content is
+    # visually black/white either way. main.py's Kindle-rotation step reads
+    # from this file rather than the thresholded dashboard.png below.
+    grayscale_path = out_path + ".grayscale.png"
+    Image.open(raw_png_path).convert("L").save(grayscale_path)
 
     if DITHER_TO_1BIT:
         img = Image.open(raw_png_path).convert("L")
@@ -97,8 +105,10 @@ def render_dashboard(days: list[Day], out_path: str, today: date | None = None) 
         # than PIL's default Floyd-Steinberg dither.
         img = img.point(lambda p: 255 if p > 140 else 0).convert("1")
         img.save(out_path)
-        os.remove(raw_png_path)
+    else:
+        Image.open(raw_png_path).save(out_path)
 
+    os.remove(raw_png_path)
     os.remove(html_path)
     return out_path
 
