@@ -24,7 +24,7 @@ doesn't know or care about any visual details, those all live here.
     height: {{ height }}px;
     background: #ffffff;
     color: #000000;
-    font-family: 'Text', sans-serif;
+    font-family: 'Text';
     overflow: hidden;
   }
 
@@ -32,123 +32,121 @@ doesn't know or care about any visual details, those all live here.
 
   /* ---------------- TODAY PANEL (left) ---------------- */
   .today {
-    width: 300px;
+    width: 518px;
     flex-shrink: 0;
-    padding: 14px 16px;
-    border-right: 2px solid #000;
+    padding: 25px 29px;
+    border-right: 4px solid #000;
   }
   .today .dayname {
-    font-family: 'Data', sans-serif;
+    font-family: 'Data';
     font-weight: 700;
-    font-size: 48px;
-    border-bottom: 6px solid #000;
+    font-size: 54px;
+    letter-spacing: 2px;
+        border-bottom: 8px solid #000;
+
   }
   .today .datestr {
-        font-family: 'Data', sans-serif;
-    font-weight: 500;
-    font-size: 34px;
-    margin-top: 4px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid #000;
+    font-size: 36px;
+    letter-spacing: 4px;
+    margin-top: 7px;
+    padding-bottom: 11px;
+    border-bottom: 4px solid #000;
   }
   .today .weather {
-    font-family: 'Data', sans-serif;
-    margin-top: 12px;
+    font-size: 47px;
+    margin-top: 22px;
     display: flex;
     align-items: center;
+    gap: 11px;
         border-bottom: 2px solid #000;
-    gap: 6px;
+
   }
   .today .weather svg { flex-shrink: 0; }
-  .today .weather .hi { font-family: 'Data', sans-serif; font-size: 48px; font-weight: 700; }
-  .today .weather .lo { font-family: 'Data', sans-serif; font-size: 40px; font-weight: 500; }
-
+  .today .weather .hi {  font-size: 47px; font-weight: 700; }
+  .today .weather .lo {  font-size: 36px; font-weight: 500; }
   .today .meal {
-    font-family: 'Text', sans-serif;
+    font-family: 'Data';
     font-weight: 700;
-    font-size: 24px;
+    font-size: 34px;
     text-transform: uppercase;
-    margin-top: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #000;
+    margin-top: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #000;
   }
-  .today .people { margin-top: 8px; }
-  .person-block { margin-bottom: 10px; }
+  .today .people { margin-top: 14px; }
+  .person-block { margin-bottom: 18px; }
   .person-name {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 25px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
   }
   .person-event {
-    font-size: 12px;
-    margin-top: 2px;
+    font-size: 22px;
+    margin-top: 4px;
     display: flex;
   }
-  .person-event .time { width: 46px; flex-shrink: 0; color: #000; }
+  .person-event .time { width: 83px; flex-shrink: 0; color: #000; }
   .person-event .title { flex: 1; }
 
   /* ---------------- WEEK LIST (right) ---------------- */
-  .week { flex: 1; display: flex; flex-direction: column; padding: 0px 16px;
-}
+  .week { flex: 1; display: flex; flex-direction: column; }
   .day-row {
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    border-bottom: 1px solid #000;
+    padding: 0 29px;
+    border-bottom: 2px solid #000;
   }
   .day-row:last-child { border-bottom: none; }
 
   .day-row .col-date {
-    width: 95px;
+    width: 163px;
     flex-shrink: 0;
-    border-right: 1px solid #000;
-    padding-right: 10px;
-    margin-right: 10px;
+    border-right: 2px solid #000;
+    padding-right: 18px;
+    margin-right: 18px;
   }
   .day-row .col-date .dayname {
-    font-family: 'Data', sans-serif;
+    font-family: 'Data';
     font-weight: 700;
-    font-size: 24px;
+    font-size: 34px;
     display: flex;
     align-items: baseline;
-    gap: 5px;
+    gap: 9px;
     white-space: nowrap;
   }
   .day-row .col-date .dayname .daynum {
-    font-family: 'Data', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+    font-family: 'Text';
+    font-weight: 400;
+    font-size: 27px;
   }
   .day-row .col-date .weather {
-    font-family: 'Data', sans-serif;
-    font-size: 14px;
-    letter-spacing: -1px;
+    font-size: 22px;
     color: #000;
-    margin-top: 2px;
+    margin-top: 4px;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 7px;
   }
   .day-row .col-date .weather svg { flex-shrink: 0; }
 
   .day-row .col-meal {
-    width: 150px;
+    width: 344px;
     flex-shrink: 0;
-    font-family: 'Text', sans-serif;
+    font-family: 'Data';
     font-weight: 700;
-    font-size: 14px;
+    font-size: 25px;
     text-transform: uppercase;
-    border-right: 1px solid #000;
-    padding-right: 10px;
-    margin-right: 10px;
+    border-right: 2px solid #000;
+    padding-right: 18px;
+    margin-right: 18px;
   }
 
   .day-row .col-events {
     flex: 1;
-    font-family: 'Text', sans-serif;
-    font-size: 12px;
+    font-size: 20px;
+    line-height: 1.4;
     max-height: 100%;
     overflow: hidden;
   }
@@ -157,7 +155,7 @@ doesn't know or care about any visual details, those all live here.
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   .day-row .col-events .person-line .who { font-weight: 700; }
   .day-row .col-events .none { color: #000; font-style: italic; }
@@ -169,7 +167,7 @@ doesn't know or care about any visual details, those all live here.
     <div class="today">
       <div class="dayname">{{ today.dayname_full }}</div>
       <div class="datestr">{{ today.datestr }}</div>
-      <div class="weather">{{ today.icon_svg | safe }} <span class="lo">{{ today.lo }}°</span> <span class="hi">/{{ today.hi }}°</span></div>
+      <div class="weather">{{ today.icon_svg | safe }} <span>{{ today.lo }}°</span> <span class="hi">{{ today.hi }}°</span></div>
       <div class="meal">{{ today.meal or "—" }}</div>
       <div class="people">
         {% for person_name, events in today.grouped_events %}
