@@ -11,6 +11,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 
 from PIL import Image
 
@@ -55,8 +56,10 @@ def build(use_demo: bool, out_path: str):
     print(f"[ok] wrote {path}")
 
     kindle_path = out_path.rsplit(".", 1)[0] + "_kindle.png"
-    save_kindle_rotated(path, kindle_path)
-    print(f"[ok] wrote {kindle_path} (rotated for Kindle screensaver)")
+    grayscale_path = out_path + ".grayscale.png"
+    save_kindle_rotated(grayscale_path, kindle_path)
+    os.remove(grayscale_path)
+    print(f"[ok] wrote {kindle_path} (rotated, 8-bit grayscale for Kindle's eips)")
 
 
 if __name__ == "__main__":
