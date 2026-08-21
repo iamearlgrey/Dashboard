@@ -40,20 +40,17 @@ doesn't know or care about any visual details, those all live here.
   .today .dayname {
     font-family: 'Data';
     font-weight: 700;
-    font-size: 54px;
-    letter-spacing: 2px;
+    font-size: 72px;
         border-bottom: 8px solid #000;
 
   }
   .today .datestr {
-    font-size: 36px;
-    letter-spacing: 4px;
+    font-size: 48px;
     margin-top: 7px;
     padding-bottom: 11px;
     border-bottom: 4px solid #000;
   }
   .today .weather {
-    font-size: 47px;
     margin-top: 22px;
     display: flex;
     align-items: center;
@@ -62,12 +59,12 @@ doesn't know or care about any visual details, those all live here.
 
   }
   .today .weather svg { flex-shrink: 0; }
-  .today .weather .hi {  font-size: 47px; font-weight: 700; }
-  .today .weather .lo {  font-size: 36px; font-weight: 500; }
+  .today .weather .hi {  font-size: 60px; font-weight: 700; }
+  .today .weather .lo {  font-size: 48px; font-weight: 500; }
   .today .meal {
-    font-family: 'Data';
+    font-family: 'Text';
     font-weight: 700;
-    font-size: 34px;
+    font-size: 36px;
     text-transform: uppercase;
     margin-top: 18px;
     padding-bottom: 14px;
@@ -95,7 +92,7 @@ doesn't know or care about any visual details, those all live here.
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 0 29px;
+    padding: 25px 29px;
     border-bottom: 2px solid #000;
   }
   .day-row:last-child { border-bottom: none; }
@@ -110,7 +107,7 @@ doesn't know or care about any visual details, those all live here.
   .day-row .col-date .dayname {
     font-family: 'Data';
     font-weight: 700;
-    font-size: 34px;
+    font-size: 48px;
     display: flex;
     align-items: baseline;
     gap: 9px;
@@ -119,12 +116,12 @@ doesn't know or care about any visual details, those all live here.
   .day-row .col-date .dayname .daynum {
     font-family: 'Text';
     font-weight: 400;
-    font-size: 27px;
+    font-size: 36px;
   }
   .day-row .col-date .weather {
-    font-size: 22px;
+    font-size: 30px;
     color: #000;
-    margin-top: 4px;
+    margin-top: 1px;
     display: flex;
     align-items: center;
     gap: 7px;
@@ -134,9 +131,9 @@ doesn't know or care about any visual details, those all live here.
   .day-row .col-meal {
     width: 344px;
     flex-shrink: 0;
-    font-family: 'Data';
+    font-family: 'Text';
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
     text-transform: uppercase;
     border-right: 2px solid #000;
     padding-right: 18px;
@@ -145,7 +142,7 @@ doesn't know or care about any visual details, those all live here.
 
   .day-row .col-events {
     flex: 1;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 1.4;
     max-height: 100%;
     overflow: hidden;
@@ -167,7 +164,7 @@ doesn't know or care about any visual details, those all live here.
     <div class="today">
       <div class="dayname">{{ today.dayname_full }}</div>
       <div class="datestr">{{ today.datestr }}</div>
-      <div class="weather">{{ today.icon_svg | safe }} <span>{{ today.lo }}°</span> <span class="hi">{{ today.hi }}°</span></div>
+      <div class="weather">{{ today.icon_svg | safe }} <span class="lo">{{ today.lo }}°</span> <span class="hi">/{{ today.hi }}°</span></div>
       <div class="meal">{{ today.meal or "—" }}</div>
       <div class="people">
         {% for person_name, events in today.grouped_events %}
