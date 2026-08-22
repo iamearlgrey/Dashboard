@@ -46,7 +46,7 @@ def _build_today_context(day: Day) -> dict:
         "lo": _fmt_temp(day.weather.low),
         "meal": day.meal,
         "grouped_events": grouped,
-        "icon_svg": get_icon_svg(day.weather.condition, size=90),
+        "icon_svg": get_icon_svg(day.weather.condition, size=120),
     }
 
 
@@ -66,7 +66,7 @@ def _build_week_day_context(day: Day) -> dict:
         "lo": _fmt_temp(day.weather.low),
         "meal": day.meal,
         "person_lines": person_lines,
-        "icon_svg": get_icon_svg(day.weather.condition, size=60),
+        "icon_svg": get_icon_svg(day.weather.condition, size=72),
     }
 
 
